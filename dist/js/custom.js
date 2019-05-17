@@ -390,12 +390,10 @@
     }
   ];
 
-
   /*------------------- Product card generator ----------------------------*/
 
   const card = (e) => {
     return `
-  
   <div class="card hoverable">
     <div class="d-block promotion">
       <div class="pill d-none sale">Sale</div>
@@ -415,33 +413,29 @@
         <p class="price-actual">from: <span class="${e.oldPrice ? '' : 'text-dark'}">$50.80</span> box</p>
         <p class="price-info">price exc. VAT</p>
       </div>
-      
       <div class="collapse" data-parent="#cardCollection" id="${e.id}">
         <div class="expand-container">
           <div class="row">
             <div class="col">
-                <button type="button" class="btn-choose btn btn-block">Choose Cups</button>
+                <button type="button" class="btn-choose btn btn-block waves-effect">Choose Cups</button>
             </div>
           </div>
           <div class="row">
             <div class="col col-md-6 ">
-                <button type="button" class="btn-aux btn-aux-favorite btn btn-block  ">
+                <button type="button" class="btn-aux btn-aux-favorite btn btn-block waves-effect ">
                 <i class="far fa-heart"></i>
                   <p>Favorite</p>
-                 
                 </button>
             </div>
             <div class="col col-md-6">
-                <button type="button" class="btn-aux btn-aux-compare btn btn-block  ">
+                <button type="button" class="btn-aux btn-aux-compare btn btn-block waves-effect ">
                   <img src="./img/svg/product compare.svg" alt="Compare Icon">
                   <p>Compare</p>
                 </button>
             </div>
           </div>
-         
         </div>
       </div>
-     
     </div>
   </div>
 `;
@@ -464,11 +458,15 @@
   cardFunctionalities = () => {
 
     /*------------------- Collapsing product card-------------------------- */
-    let dataContainer = document.getElementById('data-container');
-    dataContainer.addEventListener('click', function (e) {
-      $('.collapse').collapse('hide'); //hide all card
 
-    }, false);
+    //-------Hide all before open------------------------
+   // let dataContainer = document.getElementById('data-container');
+
+    // dataContainer.addEventListener('click', function (e) {
+    //   console.log(e.target);
+    //   $('.collapse').collapse('hide'); //hide all card
+    // }, true);
+    //-------Hide all before open------------------------
 
     let cardCollection = document.getElementsByClassName('card');
 
@@ -488,6 +486,7 @@
     /*----------------- Adding product to basket ---------------*/
     let btnChoose = document.getElementsByClassName('btn-choose');
     let btnFavourite = document.getElementsByClassName('btn-aux-favorite');
+    let btnCompare = document.getElementsByClassName('btn-aux-compare');
     const favouriteBtn = document.getElementById('favouriteCardPill');
     const shopingBtn = document.getElementById('shopingCardPill');
     let favouriteItemsQuality = 0;
@@ -524,6 +523,13 @@
           favouriteBtn.classList.add('d-none');
         }
         favouriteBtn.innerText = favouriteItemsQuality;
+      });
+    });
+
+    [...btnCompare].forEach((item) => {
+      item.addEventListener('click', function (e) {
+        e.stopPropagation();
+        console.log('Compare: ',e.target);
       });
     });
   }
