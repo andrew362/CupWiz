@@ -1194,9 +1194,24 @@ footer {
 	footer .newsletter h2 {
 		font-size: 2rem !important;
     }
-    
+
     footer .image-box.container {
         width: 100%!important;
+    }
+    footer .newsletter h2 {
+        span {
+            &::after {
+                position: absolute;
+                width: 75%;
+                margin: auto;
+                left: 0;
+                top: 0px;
+                height: 0;
+                border-left: 1px solid transparent;
+                border-right: 1px solid transparent;
+                border-bottom: 5px solid $background-dark;
+            }
+        }
     }
 }
 
